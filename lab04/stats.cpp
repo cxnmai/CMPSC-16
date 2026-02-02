@@ -15,13 +15,13 @@ int main() {
     cout << fixed << showpoint;
     cout << setprecision(2);
 
-    int size = 0;
+    int size = 0; // dynamic array size
 
     cout << "Enter number of grades: ";
     
     cin >> size;
     
-    if (size == 0) {
+    if (size <= 0) { // size must be positive
         cout << "Error!" << "\n";
         return 0;
     }
@@ -32,7 +32,7 @@ int main() {
     
     int i = 0;
     
-    while (i < size) {
+    while (i < size) { // iterate until number of grades matches size
         cin >> array[i];
         i++;
     }
@@ -68,21 +68,22 @@ double average(int* array, int size) {
     for (int i = 0; i < size; i++) {
         sum += array[i];
     }
-    return sum / size;
+    return sum / size; // sum of all values divided by size
 }
 
 double median(int* array, int size) {
-    bubbleSort(array, size);
+    bubbleSort(array, size); // sort array in increasing order
 
-    if (size % 2 == 1) return array[size / 2];
-    else return (array[(size / 2) - 1] + array[size / 2]) / 2.0;
+    if (size % 2 == 1) return array[size / 2]; // if odd number of elements, just take the middle
+    else return (array[(size / 2) - 1] + array[size / 2]) / 2.0; // if even number of elements average the two middle values
 }
 
 double stddev(int* array, int size) {
+    if (size == 1) return 0; // standard deviation of list of 1 is always 0
     double sum = 0;
     double avg = average(array, size);
     for (int i = 0; i < size; i++) {
-        sum += pow((array[i] - avg), 2);
+        sum += pow((array[i] - avg), 2); // sum squares of distance to mean
     }
-    return pow((sum / (size - 1)), 0.5);
+    return pow((sum / (size - 1)), 0.5); // square root the sum divided by N - 1
 }
