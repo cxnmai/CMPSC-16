@@ -2,6 +2,25 @@
 #include <string>
 using namespace std;
 
+bool isAnagram(string s1, string s2);
+
+int main()
+{
+    string s1;
+    string s2;
+    
+    cout << "Enter first string:" << endl;
+    getline(cin, s1);
+    cout << "Enter second string:" << endl;
+    getline(cin, s2);
+    
+    if (isAnagram(s1, s2)) {
+        cout << "The strings are anagrams." << endl;
+    } else {
+        cout << "The strings are not anagrams." << endl;
+    }
+}
+
 string clean(string str) { // to clean strings prior to comparison
     string result = ""; // result to append to
     for (int i = 0; i < str.size(); i++) {
@@ -44,21 +63,4 @@ bool isAnagram(string s1, string s2) {
     }
 
     return true; // otherwise it's true
-}
-
-int main()
-{
-    string s1;
-    string s2;
-    
-    cout << "Enter first string:" << endl;
-    getline(cin, s1);
-    cout << "Enter second string:" << endl;
-    getline(cin, s2);
-    
-    if (isAnagram(s1, s2)) {
-        cout << "The strings are anagrams." << endl;
-    } else {
-        cout << "The strings are not anagrams." << endl;
-    }
 }

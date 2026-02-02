@@ -2,20 +2,22 @@
 #include <string>
 using namespace std;
 
-struct hello {
-    string world;
-};
-
-
 int main() {
+    int x = 0;
     
-    int num = 4;
+    int* x_ref = &x;
     
-    cout << &num << endl;
+    int y = 5;
+    int* y_ref = &y;
     
-    int *num_address = &num;
+    int z = 10;
+    int* z_ref = &z;
     
-    cout << num_address << " : " << *num_address << endl;
-
-    return 0;
+    int a = 15;
+    int* a_ref = &a;
+    
+    cout << x_ref << "\n";
+    cout << y_ref << "\n";
+    cout << z_ref << "\n";
+    cout << a_ref << "\n";
 }
