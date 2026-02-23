@@ -2,11 +2,13 @@
 #include <fstream>
 #include <vector>
 #include <cmath>
+#include <iomanip>
 using namespace std;
 
 void bubbleSort(vector<int> &vec, int size);
 
 int main() {
+    cout << fixed << setprecision(2);
     cout << "Enter filename: ";
     string filename;
     cin >> filename;
@@ -22,7 +24,7 @@ int main() {
         input.push_back(num);
     }
     
-    cout << "Here are some statistics: \n";
+    cout << "Here are some statistics:\n";
     cout << "      N: " << input.size() << "\n"; // number of elements in vector
     
     int sum = 0;
@@ -38,7 +40,7 @@ int main() {
     if (input.size() % 2 == 0) { // if number of elemeents is even we take the average of the middle two
         cout << " Median: " << (input[input.size()/2 - 1] + input[input.size()/2]) / 2.0 << "\n";
     } else {
-        cout << " Median: " << input[input.size()/2] << "\n";
+        cout << " Median: " << static_cast<double>(input[input.size()/2]) << "\n";
     }
     
     double stdev = 0.0;
@@ -47,7 +49,8 @@ int main() {
         stdev += pow(num - average, 2); // sum of squares of distance to mean
     }
     
-    stdev /= input.size() - 1; // divide by N - 1
+    if (input.size() == 1) stdev = 0; // if one element, stdev = 0 to avoid division by zero
+    else stdev /= input.size() - 1;
     
     stdev = sqrt(stdev);
     
