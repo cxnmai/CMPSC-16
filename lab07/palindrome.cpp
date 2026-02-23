@@ -12,6 +12,13 @@ int main() {
     // 2. Clean up the string using the required function
     // 3. Check to see if string is a palindrome
     // 4. Print out message accordingly (see examples given)
+    // 
+    cout << "Enter sentence:" << "\n";
+    string s;
+    getline(cin, s);
+    cleanUp(s);
+    if (isPalindrome(s)) cout << "It is a palindrome.\n";
+    else cout << "It is not a palindrome.\n";
 
     return 0;
 }
