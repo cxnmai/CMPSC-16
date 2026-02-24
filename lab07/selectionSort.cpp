@@ -19,6 +19,35 @@ int main() {
     // 5. Run selection sort on the array
     //      Note: You HAVE to use the function sort() here
     // 6. Print sorted array (see PDF lab description for details)
+    
+    cout << "Enter filename: ";
+    string filename;
+    cin >> filename;
+    ifstream inf(filename);
+    if (!inf) {
+        cout << "invalid \n";
+        return 1;
+    }
+    cout << "Original array:\n";
+    int size = getFileSize(inf, filename);
+    inf.clear();
+    inf.seekg(0);
+    int arr[size] = {0};
+    getArray(inf, filename, arr, size);
+    
+    for (int num : arr) cout << num << " ";
+    cout << "\n";
+    
+    cout << "Ascending (0) or Descending (1): ";
+    bool desc;
+    cin >> desc;
+    
+    cout << "Sorted array:\n";
+    
+    sort(desc, arr, size, 0);
+    for (int num : arr) cout << num << " ";
+    cout << "\n";
+    
 
     return 0;
 }
