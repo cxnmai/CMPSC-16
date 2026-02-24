@@ -53,9 +53,8 @@ int getFileSize(ifstream& inf, string fname) {
     // pre condition: input file stream and filename
     // post condition: returns number of ints in file
     int res = 0;
-    while (inf) {
-        int tmp;
-        inf >> tmp;
+    int tmp;
+    while (inf >> tmp) {
         res++;
     }
     return res;

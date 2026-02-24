@@ -25,7 +25,6 @@ int main() {
     cin >> filename;
     ifstream inf(filename);
     if (!inf) {
-        cout << "invalid \n";
         return 1;
     }
     cout << "Original array:\n";
