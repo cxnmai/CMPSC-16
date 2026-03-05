@@ -6,6 +6,8 @@
 using namespace std;
 
 void NameSort(UndergradStudents array[], int size) {
+    // pre condition: array of UndergradStudents structs, and size of array
+    // post condition: sorts by first letter of last name
     UndergradStudents temp;
     for (int i = size; i > 0; i--) {
         for (int j = 1; j < i; j++) {
@@ -56,4 +58,26 @@ void InitializeStructures(UndergradStudents us[], int &size) {
     }
 }
 
-void WriteResults(ofstream &outf, UndergradStudents us[], int size);
+void WriteResults(ofstream &outf, UndergradStudents us[], int size) {
+    // pre condition: file output stream, array of undergrad students, and size of array
+    // post condition: writes details about students to file
+    NameSort(us, size);
+    outf.open(OUTPUTFILE);
+    outf << fixed << setprecision(2);
+    outf << "These are the results sorted by last name:" << endl;
+
+    for (int i = 0; i < size; i++) {
+        float avg = 0.0;
+        for (int y = 0; y < 4; y++) {
+            avg += us[i].GPA[y];
+        }
+        avg = avg / 4.0;
+        outf << "ID# " << us[i].id << ": "
+             << us[i].last_name << ": "
+             << us[i].first_name << ": "
+             << us[i].major << ": "
+             << avg << endl;
+    }
+
+    outf.close();
+}
