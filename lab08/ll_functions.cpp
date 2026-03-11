@@ -9,7 +9,7 @@ void h_insert(LinkNodePtr& head, string nom, int num) {
 
     tmp_ptr->name = nom;
     tmp_ptr->number = num;
-    tmp_ptr->link = nullptr; 
+    tmp_ptr->link = nullptr;
 
 // If the list is empty, the new node becomes the head
     if (head == nullptr) {
@@ -44,46 +44,68 @@ void createLL(LinkNodePtr& h) {
 }
 
 void printLL(LinkNodePtr h) {
-    LinkNodePtr cur = h;
-    while (cur != nullptr) {
-        cout << cur->name << " " << cur->number << endl;
-        cur = cur->link;
+    if (h == nullptr) {
+        cout << "This list is empty." << endl;
+        return;
     }
+
+    cout << "Printing the list:" << endl;
+    LinkNodePtr cur = h;
+    int index = 0;
+    while (cur != nullptr) {
+        cout << "Node #" << index << ": " << cur->name << ", " << cur->number << endl;
+        cur = cur->link;
+        index++;
+    }
+    cout << "--------\n";
 }
 
 void insertNodeAfter(LinkNodePtr& h) {
+    if (h == nullptr) {
+        cout << "Cannot insert in a non-existing link." << endl;
+        return;
+    }
+
     int pos = 0;
     string nom = "";
     int num = 0;
-    cout << "Enter position after which to insert (0 inserts at head): ";
+    cout << "Enter node position to insert new node after (enter negative number to exit): ";
     cin >> pos;
-    cout << "Enter name and number to insert:\n";
+    if (pos < 0) {
+        return;
+    }
+
+    int node_count = 0;
+    LinkNodePtr count_ptr = h;
+    while (count_ptr != nullptr) {
+        node_count++;
+        count_ptr = count_ptr->link;
+    }
+
+    if (pos >= node_count) {
+        cout << "Position entered is illegal. Nothing inserted." << endl;
+        return;
+    }
+
+    cout << "Enter data (name, then number): ";
     cin >> nom >> num;
 
     LinkNodePtr new_node = new LinkNode;
     new_node->name = nom;
     new_node->number = num;
-    new_node->link = nullptr;
-
-    if (h == nullptr || pos <= 0) {
-        new_node->link = h;
-        h = new_node;
-        return;
-    }
 
     LinkNodePtr cur = h;
-    int i = 1;
-    while (cur->link != nullptr && i < pos) {
+    for (int i = 0; i < pos; i++) {
         cur = cur->link;
-        i++;
     }
+
     new_node->link = cur->link;
     cur->link = new_node;
 }
 
 void findMax(LinkNodePtr h) {
     if (h == nullptr) {
-        cout << "Largest number in the list is: 0" << endl;
+        cout << "This list is empty." << endl;
         return;
     }
 
@@ -100,7 +122,7 @@ void findMax(LinkNodePtr h) {
 
 void findMin(LinkNodePtr h) {
     if (h == nullptr) {
-        cout << "Smallest number in the list is: 0" << endl;
+        cout << "This list is empty." << endl;
         return;
     }
 
