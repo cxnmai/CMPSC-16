@@ -4,28 +4,35 @@
 Student::Student(int p, 
 		      string lName, 
 		      string fName) {
-  // THIS EMPTY CONSTRUCTOR IS A STUB
-  // DELETE THESE COMMENTS AND REPLACE WITH APPROPRIATE CODE
-  // REMEMBER: PURPOSE OF A CONSTRUCTOR IS TO INITIALIZE 
-  // ALL DATA MEMBERS WITH REASONABLE VALUES  
+	perm = p;
+	firstAndMiddleNames = fName;
+	lastName = lName;
 }
 
 // THE NEXT 4 MEMBER FUNCTIONS NEED TO BE DEFINED BY THE STUDENT
 //      AND ARE, IN THE MEANTIME, DEFINED AS STUBS:
-int Student::getPerm() { 
-  return -999;
+int Student::getPerm() {
+    // pre condition - student with perm initialized
+    // post condition - returns perm as int
+    return perm;
 }
 
-string Student::getLastName() { 
-  return "stub";
+string Student::getLastName() {
+    // pre condition - student with last name initialized
+    // post condition - returns last name as string
+    return lastName;
 }
 
 string Student::getFirstAndMiddleNames() { 
-  return "stub";
+    // pre condition - student with first and middle names initialized 
+    // post condition - returns as string
+    return firstAndMiddleNames;
 }
 
 string Student::getFullName() { 
-  return "stub";
+    // pre condition - student with first, middle, and last names initialized
+    // post condition - returns full name as combined string
+    return firstAndMiddleNames + " " + lastName;
 }
 
 // THIS MEMBER FUNCTION IS DEFINED FOR YOU ALREADY:
